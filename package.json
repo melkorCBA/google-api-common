@@ -1,6 +1,6 @@
 {
   "name": "@melkorcba-osl/googleapis-common",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "JavaScript Wrapper Around common google apis ",
   "main": "./src/index.js",
   "files": [
