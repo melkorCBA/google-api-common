@@ -1,0 +1,21 @@
+{
+  "name": "@melkorcba-osl/googleapis-common",
+  "version": "1.0.0",
+  "description": "JavaScript Wrapper Around common google apis ",
+  "main": "./src/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "pub": "npm version patch && npm publish",
+    "commitnpublish": "git add . && git commit -m \"Updates\" && npm run pub"
+  },
+  "keywords": [],
+  "author": "melkorCba",
+  "license": "ISC",
+  "dependencies": {
+    "@googleapis/docs": "^1.0.1",
+    "@googleapis/drive": "^3.0.1",
+    "google-auth-library": "^8.1.1"
+  }
+}
