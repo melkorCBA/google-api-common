@@ -1,4 +1,4 @@
-const { google } = require("googleapis");
+const { google } = require("@googleapis/docs");
 const docs = google.docs({
   version: "v1",
 });
