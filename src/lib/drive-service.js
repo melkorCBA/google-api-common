@@ -1,4 +1,4 @@
-const { google } = require("@googleapis/drive");
+const google  = require("@googleapis/drive");
 const drive = google.drive({ version: "v3" });
 const driveScopes = ["https://www.googleapis.com/auth/drive"];
 
