@@ -1,25 +1,5 @@
-const google  = require("@googleapis/drive");
+const google = require("@googleapis/drive");
 const drive = google.drive({ version: "v3" });
-const driveScopes = ["https://www.googleapis.com/auth/drive"];
-
-// const driveScopes = [
-//   'https://www.googleapis.com/auth/drive', //See, edit, create, and delete all of your Google Drive files --
-//   'https://www.googleapis.com/auth/drive.appdata', // see. edit. delete it;s own configration data
-//   'https://www.googleapis.com/auth/drive.file', // sedd, edir, delete only the specific google drive file you ues with hsi app --
-//   'https://www.googleapis.com/auth/drive.metadata', // View and manage metadata of files in your Google Drive
-//   'https://www.googleapis.com/auth/drive.metadata.readonly', // See information about your Google Drive files
-//   'https://www.googleapis.com/auth/drive.photos.readonly', // View the photos, videos and albums in your Google Photos
-//   'https://www.googleapis.com/auth/drive.readonly', // See and download all your Google Drive files --
-// ]
-
-/*
-  This need to set before any related google api is called 
-*/
-
-const attachScopes = function (scope) {
-  scope.push(...driveScopes);
-  return scope;
-};
 
 const setFileType = (fileType) => {
   const options = {};
@@ -118,7 +98,6 @@ const resetAuth = () => {
 
 module.exports = () => {
   return {
-    attachScopes,
     file,
     folder,
     resetAuth,

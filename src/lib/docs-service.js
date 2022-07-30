@@ -1,14 +1,7 @@
-const google  = require("@googleapis/docs");
+const google = require("@googleapis/docs");
 const docs = google.docs({
   version: "v1",
 });
-
-const docScopes = ["https://www.googleapis.com/auth/documents"];
-
-const attachScopes = function (scope) {
-  scope.push(...docScopes);
-  return scope;
-};
 
 const queryMan = (() => {
   const replaceAllText = (find, replace) => {
@@ -71,7 +64,6 @@ const resetAuth = () => {
 
 module.exports = () => {
   return {
-    attachScopes,
     updateDoc,
     attachToken,
     resetAuth,
