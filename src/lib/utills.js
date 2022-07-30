@@ -1,4 +1,6 @@
 const Environment = (() => {
+
+
   return {
     TEMPLATE_PARENT_FOLDER_ID: process.env.TEMPLATE_PARENT_FOLDER_ID,
     TEMPLATE_DOC_ID: process.env.TEMPLATE_DOC_ID,

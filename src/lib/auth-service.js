@@ -1,46 +1,74 @@
-const keys = null;
 const { OAuth2Client } = require("google-auth-library");
 const utills = require("./utills")();
 
 /**
  * Get Auth2Client that can be used to genereate new Auth Client
- * @returns {{oAuth2ClientTypes: Object, getAuth:Function}} client types and getAuth function
+ * @returns {{oAUTH2CLIENT_TYPES: Object, getAuth:Function}} client types and getAuth function
  */
 
 const Auth2Client = (() => {
   /**
    * Client types that is supported by getAuth
-   * @param {{QUICK: number, COMPLETE:String}} oAuth2ClientTypes description
+   * @param {{QUICK: String, COMPLETE:String}} oAUTH2CLIENT_TYPES description
    */
-  const oAuth2ClientTypes = Object.freeze({
+  const oAUTH2CLIENT_TYPES = Object.freeze({
     QUICK: "QUICK",
     COMPLETE: "COMPLETE",
   });
   /**
+   * execution environment supported by getAuth
+   * @param {{CLIENT: String, SERVER:String}} EXECUTION_ENVIRONMENTS  description
+   */
+  const EXECUTION_ENVIRONMENTS = Object.freeze({
+    CLIENT: "CLIENT",
+    SERVER: "SERVER",
+  });
+  /**
    * Get Auth client with requested type
    * @param {{token:String}} data  - Access token object
-   * @param {oAuth2ClientTypes} scopes  - client type (Quick or Complete)
+   * @param {oAUTH2CLIENT_TYPES} scopes  - client type (Quick or Complete)
+   * @param {EXECUTION_ENVIRONMENTS} exeEnv  - execution environment of the Auth flow  (CLIENT or SERVER)
+   * @param {Object} options  - auth data if auth flow happens in the client side
    * @returns {OAuth2Client} AuthClient Object
    */
-  const getAuth = ({ data, type }) => {
-    if (type === oAuth2ClientTypes.QUICK) {
+  const getAuth = ({ data, type, exeEnv, options }) => {
+    if (type === oAUTH2CLIENT_TYPES.QUICK) {
       return {
         Authorization: `Bearer ${data.token}`,
       };
     }
-    const { client_id, client_secret, redirect_uris } =
-      utills.Environment.AUTH_DATA;
+    // Auth flow happens in the server side
+    // this is because the secrets are accsesble in the server side via environment varibales
+    if (exeEnv && exeEnv === EXECUTION_ENVIRONMENTS.SERVER) {
+      const { client_id, client_secret, redirect_uris } =
+        utills.Environment.AUTH_DATA;
 
-    const oAuth2Client = new OAuth2Client(
-      client_id,
-      client_secret,
-      redirect_uris
-    );
+      const oAuth2Client = new OAuth2Client(
+        client_id,
+        client_secret,
+        redirect_uris
+      );
 
-    return oAuth2Client;
+      return oAuth2Client;
+    }
+
+    // Auth flow happens in the client side, hence auth data has to be provided
+    if (exeEnv && exeEnv === EXECUTION_ENVIRONMENTS.CLIENT && options) {
+      const { client_id, client_secret, redirect_uris } = options;
+      const oAuth2Client = new OAuth2Client(
+        client_id,
+        client_secret,
+        redirect_uris
+      );
+
+      return oAuth2Client;
+    }
+
+    return new Error("execution environment or Auth data required are missing");
   };
   return {
-    oAuth2ClientTypes,
+    oAUTH2CLIENT_TYPES,
+    EXECUTION_ENVIRONMENTS,
     getAuth,
   };
 })();
