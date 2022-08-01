@@ -1,6 +1,6 @@
 const drive = require("./drive-service");
 const doc = require("./docs-service");
-const {explicitFlow} = require('./auth-service');
+const explicitFlow = require('./grant-explicit');
 
 
 const clients = (() => {

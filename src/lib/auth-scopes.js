@@ -15,7 +15,5 @@ const AUTH_SCOPES = {
 };
 
 module.exports = {
-  implicitFlow: require("./grant-implicit"),
-  explicitFlow: require("./grant-explicit"),
   AUTH_SCOPES,
 };

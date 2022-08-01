@@ -3,6 +3,11 @@
   "version": "1.0.8",
   "description": "JavaScript Wrapper Around common google apis ",
   "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./grant-explicit.js": "./src/lib/grant-explicit.js",
+    "./grant-implicit.js": "./src/lib/grant-implicit.js"
+  },
   "files": [
     "src/**/*"
   ],

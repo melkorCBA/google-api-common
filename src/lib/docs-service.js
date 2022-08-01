@@ -50,7 +50,7 @@ const updateDoc = async ({ documentId, query }) => {
 };
 
 const attachToken = ({ data, type }) => {
-  const auth = require("./auth-service")();
+  const auth = require("./auth-scopes")();
   const authHeader = auth.Auth2Client.getAuth({
     data,
     type: type ?? auth.Auth2Client.oAuth2ClientTypes.QUICK,
