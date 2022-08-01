@@ -6,7 +6,8 @@
   "exports": {
     ".": "./src/index.js",
     "./grant-explicit": "./src/lib/grant-explicit.js",
-    "./grant-implicit": "./src/lib/grant-implicit.js"
+    "./grant-implicit": "./src/lib/grant-implicit.js",
+    "./auth-scopes": "./src/lib/auth-scopes.js"
   },
   "files": [
     "src/**/*"
