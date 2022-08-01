@@ -1,4 +1,8 @@
-const  axios = require("axios");
+/**
+ * Validate access token
+ * @param {{ client_id, redirect_uri, scopes, response_type}} Auth date  - auth data needed to request new access token
+ * @returns {{URL: string }} Request URL
+ */
 
 const getTokenRequestURL = ({
   client_id,
@@ -20,7 +24,14 @@ const getTokenRequestURL = ({
   return URL;
 };
 
-const validateToken = async (token) => {
+/**
+ * Validate access token
+ * @param {{token:String}} token  - Access token
+ * @param {Object} axios  - axios client
+ * @returns {{status: number, expired: number, expires_in: number }} validation status
+ */
+
+const validateToken = async (token, axios) => {
   let URL = "https://www.googleapis.com/oauth2/v3/tokeninfo";
   const params = {
     access_token: token,
@@ -36,8 +47,13 @@ const validateToken = async (token) => {
   if (+expires_in < 1) return { status: 1, expired: 1, timeToExpire: 0 };
   return { status: 1, expired: 0, expires_in: +expires_in };
 };
-
-const revokeToken = async (token) => {
+/**
+ * Revoke access token
+ * @param {{token:String}} token  - Access token
+ * @param {Object} axios  - axios client
+ * @returns {{status:string}} revoke status (Revoked/Failed)
+ */
+const revokeToken = async (token, axios) => {
   let URL = "https://oauth2.googleapis.com/revoke";
   const params = {
     token,
