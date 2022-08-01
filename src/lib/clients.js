@@ -1,10 +1,11 @@
 const drive = require("./drive-service");
 const doc = require("./docs-service");
-const auth = require('./auth-service')()
+const {explicitFlow} = require('./auth-service');
+
 
 const clients = (() => {
     const getClients = (token) => {
-      const tokenData = {type: auth.Auth2Client.oAuth2ClientTypes.QUICK, data: {token}}
+      const tokenData = {type: explicitFlow.Auth2Client.oAuth2ClientTypes.QUICK, data: {token}}
       const driveClient = drive();
       const docClient = doc();
       driveClient.attachToken(tokenData);

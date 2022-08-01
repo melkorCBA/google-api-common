@@ -1,6 +1,3 @@
-const implicit = require("./grant-implicit");
-const explicit = require("./grant-explicit");
-
 const AUTH_SCOPES = {
   DRIVE: {
     VED_ALL_FILES: "https://www.googleapis.com/auth/drive",
@@ -18,7 +15,7 @@ const AUTH_SCOPES = {
 };
 
 module.exports = {
-  implicit,
-  explicit,
+  implicitFlow: require("./grant-implicit"),
+  explicitFlow: require("./grant-explicit"),
   AUTH_SCOPES,
 };

@@ -1,4 +1,4 @@
-import axios from "axios";
+const  axios = require("axios");
 
 const getTokenRequestURL = ({
   client_id,
@@ -46,11 +46,11 @@ const revokeToken = async (token) => {
     if (params[key]) URL += `?${key}=${params[key]}`;
   });
   const response = await axios.post({ baseURL: URL });
-  return {status: response.status === 200 ? 'Revoked' : 'Failed'}
+  return { status: response.status === 200 ? "Revoked" : "Failed" };
 };
 
 module.exports = {
   getTokenRequestURL,
   validateToken,
-  revokeToken
+  revokeToken,
 };
