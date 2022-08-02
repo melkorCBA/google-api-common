@@ -14,7 +14,9 @@
   ],
   "scripts": {
     "pub": "npm version patch && npm publish --access=public",
-    "commitnpublish": "git add . && git commit -m \"Updates\" && npm run pub"
+    "commitnpublish": "git add . && git commit -m \"Updates\" && npm run pub",
+    "test": "jest",
+    "dev-test" : "jest --watch"
   },
   "keywords": [],
   "author": "melkorCba",
@@ -23,5 +25,8 @@
     "@googleapis/docs": "^1.0.1",
     "@googleapis/drive": "^3.0.1",
     "google-auth-library": "^8.1.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
   }
 }

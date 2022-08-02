@@ -17,9 +17,16 @@ const getTokenRequestURL = ({
     scopes: scopes?.join(","),
     response_type,
   };
-
+  let providedCount = Object.keys(params).map((k)=> params[k] ? 1 : 0).reduce((a,b)=>a+b);
+  let i = 0;
   Object.keys(params).forEach((key) => {
-    if (params[key]) URL += `?${key}=${params[key]}`;
+   
+    if (params[key]) {
+      if (i === 0) URL += "?";
+      URL += `${key}=${params[key]}`;
+      if (i < providedCount -1) URL += "&";
+      i++;
+    }
   });
   return URL;
 };
