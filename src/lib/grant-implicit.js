@@ -14,7 +14,7 @@ const getTokenRequestURL = ({
   const params = {
     client_id,
     redirect_uri,
-    scope: scope?.join(","),
+    scope: scope?.join(" "),
     response_type,
   };
   let providedCount = Object.keys(params).map((k)=> params[k] ? 1 : 0).reduce((a,b)=>a+b);

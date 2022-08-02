@@ -19,7 +19,7 @@ describe("implecit grannt flows", () => {
     it("should have a scopes as a query paramter if scopes id is provided", () => {
         const scope=['www.google.com/scope1', 'www.google.com/scope2'];
         const url  = getTokenRequestURL({scope});
-        expect(url).toContain(`?scope=${scope.join(',')}`);
+        expect(url).toContain(`?scope=${scope.join(' ')}`);
     });
     it("should have a response_type as a query paramter if response_type is provided", () => {
         const response_type='offline';
@@ -33,7 +33,7 @@ describe("implecit grannt flows", () => {
         const response_type='offline';
         const baseUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
         const url  = getTokenRequestURL({client_id, redirect_uri, scope, response_type,});
-        expect(url).toBe(`${baseUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(',')}&response_type=${response_type}`);
+        expect(url).toBe(`${baseUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(' ')}&response_type=${response_type}`);
     });
   });
 });
