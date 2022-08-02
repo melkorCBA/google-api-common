@@ -1,6 +1,6 @@
 {
   "name": "@melkorcba-osl/googleapis-common",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "JavaScript Wrapper Around common google apis ",
   "main": "./src/index.js",
   "exports": {
@@ -16,7 +16,7 @@
     "pub": "npm version patch && npm publish --access=public",
     "commitnpublish": "git add . && git commit -m \"Updates\" && npm run pub",
     "test": "jest",
-    "dev-test" : "jest --watch"
+    "dev-test": "jest --watch"
   },
   "keywords": [],
   "author": "melkorCba",
