@@ -1,20 +1,20 @@
 /**
  * Validate access token
- * @param {{ client_id, redirect_uri, scopes, response_type}} Auth date  - auth data needed to request new access token
+ * @param {{ client_id, redirect_uri, scope, response_type}} Auth date  - auth data needed to request new access token
  * @returns {{URL: string }} Request URL
  */
 
 const getTokenRequestURL = ({
   client_id,
   redirect_uri,
-  scopes,
+  scope,
   response_type,
 }) => {
   let URL = "https://accounts.google.com/o/oauth2/v2/auth";
   const params = {
     client_id,
     redirect_uri,
-    scopes: scopes?.join(","),
+    scope: scope?.join(","),
     response_type,
   };
   let providedCount = Object.keys(params).map((k)=> params[k] ? 1 : 0).reduce((a,b)=>a+b);

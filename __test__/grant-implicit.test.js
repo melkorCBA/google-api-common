@@ -17,9 +17,9 @@ describe("implecit grannt flows", () => {
         expect(url).toContain(`?redirect_uri=${redirect_uri}`);
     });
     it("should have a scopes as a query paramter if scopes id is provided", () => {
-        const scopes=['www.google.com/scope1', 'www.google.com/scope2'];
-        const url  = getTokenRequestURL({scopes});
-        expect(url).toContain(`?scopes=${scopes.join(',')}`);
+        const scope=['www.google.com/scope1', 'www.google.com/scope2'];
+        const url  = getTokenRequestURL({scope});
+        expect(url).toContain(`?scope=${scope.join(',')}`);
     });
     it("should have a response_type as a query paramter if response_type is provided", () => {
         const response_type='offline';
@@ -29,11 +29,11 @@ describe("implecit grannt flows", () => {
     it("should have a valid request url if valid query paramters provided", () => {
         const client_id='riuwehriuwehiufiudhfsdfbsdjkfbsbdifu.apps.googleusercontent.com';
         const redirect_uri='www.google.com/page';
-        const scopes=['www.google.com/scope1', 'www.google.com/scope2'];
+        const scope=['www.google.com/scope1', 'www.google.com/scope2'];
         const response_type='offline';
         const baseUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-        const url  = getTokenRequestURL({client_id, redirect_uri, scopes, response_type,});
-        expect(url).toBe(`${baseUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&scopes=${scopes.join(',')}&response_type=${response_type}`);
+        const url  = getTokenRequestURL({client_id, redirect_uri, scope, response_type,});
+        expect(url).toBe(`${baseUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(',')}&response_type=${response_type}`);
     });
   });
 });
