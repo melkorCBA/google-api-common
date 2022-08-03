@@ -4,8 +4,6 @@
  * @returns {{URL: string }} Request URL
  */
 
-const { utills } = require("..");
-
 const getTokenRequestURL = ({
   client_id,
   redirect_uri,
