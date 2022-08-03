@@ -2,6 +2,9 @@ const {
   getTokenRequestURL,
   validateToken,
   revokeToken,
+  extractTokenFromUrl,
+  searhQueryString,
+  seacrhFragment
 } = require("../src/lib/grant-implicit");
 
 describe("implecit grannt flows", () => {
@@ -35,5 +38,68 @@ describe("implecit grannt flows", () => {
         const url  = getTokenRequestURL({client_id, redirect_uri, scope, response_type,});
         expect(url).toBe(`${baseUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(' ')}&response_type=${response_type}`);
     });
+  });
+
+  describe('extracting token from fragmneted URL', ()=>{
+    it('should return access token if available in a query string', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const queryString_access_token_asFirstArg = `https://abc.com?access_token=${access_token}&other=oifhjoiejf`;
+        expect(searhQueryString(queryString_access_token_asFirstArg, 'access_token')).toBe(access_token)
+    })
+    it('should return flase if access token not available in a query string', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const queryString_access_token_asFirstArg = `https://abc.com?access_n=${access_token}&other=oifhjoiejf`;
+        expect(searhQueryString(queryString_access_token_asFirstArg, 'access_token')).toBe(false)
+    })
+    it('should return the token if token is available as query param', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const url_access_token_asFirstArg=`https://abc.com?access_token=${access_token}&other=oifhjoiejf`;
+        expect(extractTokenFromUrl(url_access_token_asFirstArg)).toBe(access_token)
+
+        
+        const url_access_token_asNonFirstArg =`https://abc.com?other=ioiwes&access_token=${access_token}&other=oifhjoiejf`;
+        expect(extractTokenFromUrl(url_access_token_asNonFirstArg)).toBe(access_token);
+    })
+
+    it('should return access token if available in a fragment string', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const url_access_token_asFirstArg=`https://abc.com#access_token=${access_token}&other=oifhjoiejf`;
+        expect(seacrhFragment(url_access_token_asFirstArg, 'access_token=')).toBe(access_token)
+    })
+    it('should return flase if  token is not available in a fragment string', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const url_access_token_asFirstArg=`https://abc.com#acces=${access_token}&other=oifhjoiejf`;
+        expect(seacrhFragment(url_access_token_asFirstArg, 'access_token=')).toBe(false)
+    })
+
+    it('should return the token if token is available as fragment', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const url_access_token_asFirstArg=`https://abc.com#access_token=${access_token}&other=oifhjoiejf`;
+        expect(extractTokenFromUrl(url_access_token_asFirstArg)).toBe(access_token)
+
+        
+        const url_access_token_asNonFirstArg =`https://abc.com?other=ioiwes#access_token=${access_token}&other=oifhjoiejf`;
+        expect(extractTokenFromUrl(url_access_token_asNonFirstArg)).toBe(access_token);
+    })
+
+
+    it('should return flase if token is not available as fragment', () => {
+        const access_token = 'fihsdkfnf432423492304-3204230394';
+        const url_access_token_asFirstArg=`https://abc.com#access_ten=${access_token}&other=oifhjoiejf`;
+        expect(extractTokenFromUrl(url_access_token_asFirstArg)).toBe(false)
+
+        
+        const url_access_token_asNonFirstArg =`https://abc.com?other=ioiwes?ffsdfds=gdfg&other=oifhjoiejf`;
+        expect(extractTokenFromUrl(url_access_token_asNonFirstArg)).toBe(false);
+    })
+
+    it('should return token of fragment if token is availble in both fragmetn and query', () => {
+        const access_token_frg = 'fihsdkfnf432423492304-3204230394frg';
+        const access_token_query = 'fihsdkfnf432423492304-3204230394query';
+        const url_access_token_asFirstArg=`https://abc.com#access_token=${access_token_frg}?access_token=${access_token_query}`;
+        expect(extractTokenFromUrl(url_access_token_asFirstArg)).toBe(access_token_frg)
+
+    })
+
   });
 });

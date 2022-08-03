@@ -4,6 +4,8 @@
  * @returns {{URL: string }} Request URL
  */
 
+const { utills } = require("..");
+
 const getTokenRequestURL = ({
   client_id,
   redirect_uri,
@@ -17,14 +19,15 @@ const getTokenRequestURL = ({
     scope: scope?.join(" "),
     response_type,
   };
-  let providedCount = Object.keys(params).map((k)=> params[k] ? 1 : 0).reduce((a,b)=>a+b);
+  let providedCount = Object.keys(params)
+    .map((k) => (params[k] ? 1 : 0))
+    .reduce((a, b) => a + b);
   let i = 0;
   Object.keys(params).forEach((key) => {
-   
     if (params[key]) {
       if (i === 0) URL += "?";
       URL += `${key}=${params[key]}`;
-      if (i < providedCount -1) URL += "&";
+      if (i < providedCount - 1) URL += "&";
       i++;
     }
   });
@@ -72,8 +75,48 @@ const revokeToken = async (token, axios) => {
   return { status: response.status === 200 ? "Revoked" : "Failed" };
 };
 
+const extractTokenFromUrl = (url) => {
+  const tokenFromFragment = seacrhFragment(url, 'access_token=');
+  if (tokenFromFragment) return tokenFromFragment;
+  return searhQueryString(url, "access_token");
+};
+
+const searhQueryString = (url, key) => {
+  // retrive anyting after ?
+  const posibleQueryString = url?.split("?")[1];
+  if (!posibleQueryString) return false;
+
+  // check their is token from query param
+  const queries = posibleQueryString.split("&");
+  const tokenParam = queries?.find((q) => q.includes(key));
+  if (!tokenParam) return false;
+
+  // extract token
+  const token = tokenParam.split("access_token=");
+  return token.length > 1 ? token[1] : false;
+};
+
+const seacrhFragment = (url, key) => {
+  // retrive anyting after #
+  const posibleFragmentString = url?.split("#")[1];
+  if (!posibleFragmentString) return false;
+  
+  // check their is token from fragmentString param
+  const fragments = posibleFragmentString.split(/(\?|\&)/)[0];
+  console.log(`fragments: ${fragments}`)
+  if (!fragments) return false;
+  // extract token
+  const token = fragments.split(key);
+  return token.length > 1 ? token[1] : false;
+
+
+};
+
 module.exports = {
   getTokenRequestURL,
   validateToken,
   revokeToken,
+  extractTokenFromUrl,
+  searhQueryString,
+  seacrhFragment
 };
