@@ -5,7 +5,7 @@ const explicitFlow = require('./grant-explicit');
 
 const clients = (() => {
     const getClients = (token) => {
-      const tokenData = {type: explicitFlow.Auth2Client.oAuth2ClientTypes.QUICK, data: {token}}
+      const tokenData = {type: explicitFlow.Auth2Client.oAUTH2CLIENT_TYPES.QUICK, data: {token}}
       const driveClient = drive();
       const docClient = doc();
       driveClient.attachToken(tokenData);

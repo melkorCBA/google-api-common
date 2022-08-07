@@ -101,7 +101,6 @@ const seacrhFragment = (url, key) => {
   
   // check their is token from fragmentString param
   const fragments = posibleFragmentString.split(/(\?|\&)/)[0];
-  console.log(`fragments: ${fragments}`)
   if (!fragments) return false;
   // extract token
   const token = fragments.split(key);

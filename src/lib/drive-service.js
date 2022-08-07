@@ -84,12 +84,14 @@ const folder = (() => {
 })();
 
 const attachToken = ({ data, type }) => {
-  const auth = require("./auth-scopes")();
-  const authHeader = auth.Auth2Client.getAuth({
-    data,
-    type: type ?? auth.Auth2Client.oAuth2ClientTypes.QUICK,
-  });
-  drive.files.context._options["headers"] = authHeader;
+  const attach = require('./attachToken');
+  attach(drive, {data, type});
+  // const {Auth2Client} = require('./grant-explicit');
+  // const authHeader = Auth2Client.getAuth({
+  //   data,
+  //   type: type ?? Auth2Client.oAUTH2CLIENT_TYPES.QUICK,
+  // });
+  // drive.files.context._options["headers"] = authHeader;
 };
 
 const resetAuth = () => {
