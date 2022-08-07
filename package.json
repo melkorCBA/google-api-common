@@ -9,6 +9,9 @@
     "./grant-implicit": "./src/lib/grant-implicit.js",
     "./auth-scopes": "./src/lib/auth-scopes.js"
   },
+  "imports":{
+    "#attachToken" : "./src/lib/attachToken.js"
+  },
   "files": [
     "src/**/*"
   ],

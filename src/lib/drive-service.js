@@ -84,7 +84,7 @@ const folder = (() => {
 })();
 
 const attachToken = ({ data, type }) => {
-  const attach = require('./attachToken');
+  const attach = require('#attachToken');
   attach(drive, {data, type});
   // const {Auth2Client} = require('./grant-explicit');
   // const authHeader = Auth2Client.getAuth({
