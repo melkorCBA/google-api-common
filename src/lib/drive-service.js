@@ -72,10 +72,6 @@ const folder = (() => {
       const { data } = response;
       return data;
     } catch (err) {
-      console.log("----Erorors");
-      console.log(err);
-      console.log("----Erorors.config");
-      console.log(err.response.config);
       throw new Error(err);
     }
   };
@@ -87,12 +83,6 @@ const folder = (() => {
 const attachToken = ({ data, type }) => {
   const attach = require('./attachToken');
   attach(drive, 'files',{data, type});
-  // const {Auth2Client} = require('./grant-explicit');
-  // const authHeader = Auth2Client.getAuth({
-  //   data,
-  //   type: type ?? Auth2Client.oAUTH2CLIENT_TYPES.QUICK,
-  // });
-  // drive.files.context._options["headers"] = authHeader;
 };
 
 const resetAuth = () => {

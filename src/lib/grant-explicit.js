@@ -98,7 +98,7 @@ const getAuthData = async (client, scopes) => {
       codes,
     };
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 
@@ -120,7 +120,7 @@ const getToken = async (client, code, codeVerifier) => {
     client.setCredentials(response.tokens);
     return response.tokens?.access_token;
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 
