@@ -1,6 +1,6 @@
 {
   "name": "@melkorcba-osl/googleapis-common",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "JavaScript Wrapper Around common google apis ",
   "main": "./src/index.js",
   "exports": {
@@ -9,8 +9,8 @@
     "./grant-implicit": "./src/lib/grant-implicit.js",
     "./auth-scopes": "./src/lib/auth-scopes.js"
   },
-  "imports":{
-    "#attachToken" : "./src/lib/attachToken.js"
+  "imports": {
+    "#attachToken": "./src/lib/attachToken.js"
   },
   "files": [
     "src/**/*"
