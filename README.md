@@ -1,4 +1,8 @@
 # Google-api-common 
+[![npm](https://img.shields.io/npm/l/@melkorcba-osl/googleapis-common)](https://img.shields.io/npm/l/@melkorcba-osl/googleapis-common)
+[![version](https://img.shields.io/npm/v/@melkorcba-osl/googleapis-common)](https://img.shields.io/npm/v/@melkorcba-osl/googleapis-common)
+[![downloads](https://img.shields.io/npm/dm/@melkorcba-osl/googleapis-common)](https://img.shields.io/npm/dm/@melkorcba-osl/googleapis-common)
+
 google-api-common is a wrapper around  **[google-api-nodejs-client]** that provides simpler javaScript APIs for common functions in following libraries.
 - [@googleapis/docs]
 - [@googleapis/drive]
