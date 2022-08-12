@@ -1,6 +1,6 @@
 {
   "name": "@melkorcba-osl/googleapis-common",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "JavaScript Wrapper Around common google apis ",
   "main": "./src/index.js",
   "exports": {
@@ -21,7 +21,11 @@
     "test": "jest",
     "dev-test": "jest --watch"
   },
-  "keywords": ["googleapis", "googleapis/doc", "googleapis/drive"],
+  "keywords": [
+    "googleapis",
+    "googleapis/doc",
+    "googleapis/drive"
+  ],
   "author": "melkorCba",
   "license": "MIT",
   "dependencies": {
