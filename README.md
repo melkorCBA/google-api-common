@@ -73,4 +73,4 @@ const {authUrl, codes} = getAuthData(authClient, scopes);
 
 
 # Contributions
-Contributors to welcomed with open arms. Please mind the Documentation still under development. Feel free to report any issues and support for new APIs.
+Contributors are welcomed with open arms. Please mind the Documentation still under development. Feel free to report any issues and support for new APIs.
