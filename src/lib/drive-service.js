@@ -1,6 +1,5 @@
 const google = require("@googleapis/drive");
 const drive = google.drive({ version: "v3" });
-const attach = require('./attachToken');
 
 const setFileType = (fileType) => {
   const options = {};
